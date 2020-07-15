@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-    class Program
+    abstract class Player
     {
-        static void Main(string[] args)
-        {
-            Game game = new Game();
-            game.Run();
-
-        }
+        public int score;
+        public bool isHuman;
     }
 }
