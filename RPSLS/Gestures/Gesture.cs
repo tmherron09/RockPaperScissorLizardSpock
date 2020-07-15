@@ -8,7 +8,7 @@ namespace RPSLS
 {
     abstract class Gesture
     {
-        public string name;
+        public string name;  // May not need if I overload ToString.
 
         public Gesture()
         {
@@ -18,6 +18,11 @@ namespace RPSLS
         public virtual bool CanWin(Gesture gesture)
         {
             throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            return name;
         }
     }
 }

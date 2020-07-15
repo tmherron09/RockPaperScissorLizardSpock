@@ -11,8 +11,11 @@ namespace RPSLS
         static void Main(string[] args)
         {
             Game game = new Game();
-            game.Run();
+            //game.Run();
+            Gesture paper = new Paper();
+            Console.WriteLine(paper);
 
+            Console.ReadLine();
         }
     }
 }
