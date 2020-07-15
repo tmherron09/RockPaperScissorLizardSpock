@@ -8,5 +8,10 @@ namespace RPSLS
 {
     class Computer : Player
     {
+        public Computer()
+        {
+            isHuman = false;
+            playerType = "COM";
+        }
     }
 }

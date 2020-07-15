@@ -27,7 +27,7 @@ namespace RPSLS
             // Initialization and Reset if Playing again.
             // Display Game information
             ChooseNumberOfPlayers();
-            // PlayGame()
+            PlayGame();
             // PlayAgain()
         }
 
@@ -37,9 +37,9 @@ namespace RPSLS
             int selection = GetUserInput(1, 2, "Please select the number of players(1 / 2): ");
             for(int i = 0; i < selection; i++)
             {
-                players[i] = new Human();
+                players[i] = new Human(i+1);
             }
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
 
@@ -48,18 +48,20 @@ namespace RPSLS
         {
             while (currentRound <= numberOfRounds) // Placeholder until logic
             {
-                // Display Turn Info and Score
+                // Display Round Info and Score
+                DisplayRoundInformation();
                 // Display Choices
+
                 // Get User Input
                 // Display Both Hands and Declare winner
                 // Add to scores.
+                Console.ReadKey();
                 currentRound++;
             }
             // Display Winner Info!
         }
 
-
-
+        
 
         private int GetUserInput(int lowLimit, int upperLimit, string choiceMessage)
         {
@@ -91,6 +93,13 @@ namespace RPSLS
             Console.SetCursorPosition(0, 0);
         }
 
-
+        private void DisplayRoundInformation()
+        {
+            ClearLinesOfScreen(0, 20);
+            string msg = $"Round {currentRound} : {players[0]} Score: {players[0].score} | {players[1]} Score: {players[1].score}";
+            int startWriteLocation = (Console.WindowWidth - msg.Length) / 2;
+            Console.SetCursorPosition(startWriteLocation, 5);
+            Console.Write(msg);
+        }
     }
 }

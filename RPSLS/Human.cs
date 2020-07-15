@@ -8,9 +8,10 @@ namespace RPSLS
 {
     class Human : Player
     {
-        public Human() : base()
+        public Human(int playerNumber) : base()
         {
             isHuman = true;
+            playerType = "Player " + playerNumber;
         }
     }
 }
