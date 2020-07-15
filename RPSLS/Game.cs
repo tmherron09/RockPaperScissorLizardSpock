@@ -46,8 +46,10 @@ namespace RPSLS
 
         public void PlayGame()
         {
+            string resultsMessage = "Tie: Neither Player Wins";
             while (currentRound <= numberOfRounds) // Placeholder until logic
             {
+                
                 // Display Round Info and Score
                 DisplayRoundInformation();
                 // Display Choices
@@ -63,35 +65,8 @@ namespace RPSLS
 
         
 
-        private int GetUserInput(int lowLimit, int upperLimit, string choiceMessage)
-        {
-            bool valid = false;
-            int userInput = 0;
-            string invalidMessage = "";
-            do
-            {
-                Console.WriteLine(invalidMessage + choiceMessage);
-                valid = Int32.TryParse(Console.ReadLine(), out userInput);
-                if (userInput < lowLimit || userInput > upperLimit)
-                {
-
-                    ClearLinesOfScreen(0, 5);
-                    invalidMessage = "Invalid Input: Please try again.\n";
-                    valid = false;
-                }
-            } while (!valid);
-            return userInput;
-        }
-        private void ClearLinesOfScreen(int lineStart, int numberOfLines)
-        {
-            string blankLine = new string(' ', Console.WindowWidth);
-            for (int i = lineStart; i < numberOfLines; i++)
-            {
-                Console.SetCursorPosition(0, i);
-                Console.WriteLine(blankLine);
-            }
-            Console.SetCursorPosition(0, 0);
-        }
+        
+        
 
         private void DisplayRoundInformation()
         {

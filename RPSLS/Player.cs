@@ -30,5 +30,16 @@ namespace RPSLS
         {
             return playerType;
         }
+
+        public void ChooseGesture()
+        {
+            string gestureChoice = GetGestureChoice();
+            DisplayHelper.GetUserInput(1, gestures.Count, gestureChoice);
+        }
+
+        public string GetGestureChoice()
+        {
+
+        }
     }
 }

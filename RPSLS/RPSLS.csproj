@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Computer.cs" />
+    <Compile Include="DisplayHelper.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Gestures\Gesture.cs" />
     <Compile Include="Human.cs" />
