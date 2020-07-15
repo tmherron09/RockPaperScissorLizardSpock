@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Computer.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Gestures\Gesture.cs" />
+    <Compile Include="Human.cs" />
     <Compile Include="Gestures\Paper.cs" />
     <Compile Include="Gestures\Lizard.cs" />
     <Compile Include="Player.cs" />

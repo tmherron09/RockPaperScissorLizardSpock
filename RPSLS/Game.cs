@@ -20,6 +20,7 @@ namespace RPSLS
         {
             currentRound = 1;
             numberOfRounds = 3; // Placeholder initialization
+            players = new List<Player>() { null, new Computer() };
         }
         public void Run()
         {
@@ -34,6 +35,10 @@ namespace RPSLS
         {
             //Console.Write("Please select the number of players (1/2): ");
             int selection = GetUserInput(1, 2, "Please select the number of players(1 / 2): ");
+            for(int i = 0; i < selection; i++)
+            {
+                players[i] = new Human();
+            }
             Console.ReadLine();
         }
 
