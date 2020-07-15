@@ -10,5 +10,18 @@ namespace RPSLS
     {
         public int score;
         public bool isHuman;
+        public List<Gesture> gestures;
+
+        public Player()
+        {
+            gestures = new List<Gesture>()
+            {
+                new Rock(),
+                new Paper(),
+                new Scissors(),
+                new Lizard(),
+                new Spock()
+            };
+        }
     }
 }
