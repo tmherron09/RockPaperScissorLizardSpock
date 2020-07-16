@@ -24,12 +24,12 @@ namespace RPSLS
             {
                 if (((number - i) % 5) == gesture.number % 5)
                 {
-                    msg = $"{name} {verbs[i-1]} {gesture.name}!\n\n{players[0].playerType} Wins the Round!";
+                    msg = $"\t\t{name} {verbs[i-1]} {gesture.name}!\n\n{players[0].playerType} Wins the Round!";
                     players[0].score++;
                 }
                 if (((number + i) % 5) == gesture.number % 5)
                 {
-                    msg = $"{gesture.name} {gesture.verbs[i - 1]} {name}!\n\n{players[1].playerType} Wins the Round!";
+                    msg = $"\t\t{gesture.name} {gesture.verbs[i - 1]} {name}!\n\n{players[1].playerType} Wins the Round!";
                     players[1].score++;
                 }
             }

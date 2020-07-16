@@ -64,9 +64,9 @@ namespace RPSLS
             {
                 string result = "";
                 // Display Round Info and Score
-                DisplayRoundInformation(result);
-                players[0].ChooseGesture(gestures);
-                players[1].ChooseGesture(gestures);
+                DisplayRoundInformation();
+                players[0].ChooseGesture(gestures, players[0].playerType);
+                players[1].ChooseGesture(gestures, players[1].playerType);
 
                 result = players[0].gesture.Challenge(players[1].gesture, players);
                 DisplayRoundInformation(result);
@@ -100,10 +100,8 @@ namespace RPSLS
         {
             DisplayHelper.ClearLinesOfScreen(0, 20);
             string msg = $"Round {currentRound} : {players[0]} Score: {players[0].score} | {players[1]} Score: {players[1].score}\n\n";
-            int startWriteLocation = (Console.WindowWidth - (msg.Length + result.Length) / 2);
-            Console.SetCursorPosition(startWriteLocation, 5);
-
-            Console.Write(msg + result);
+            int startWriteLocation = (Console.WindowWidth - (msg.Length + result.Length)) / 2;
+            DisplayHelper.WriteLiteral(msg + result, startWriteLocation, 5);
         }
     }
 }

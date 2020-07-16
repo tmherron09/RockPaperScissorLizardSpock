@@ -46,7 +46,7 @@ namespace RPSLS
                 valid = Int32.TryParse(Console.ReadLine(), out userInput);
                 if (userInput < lowLimit || userInput > upperLimit)
                 {
-                    int numberOfLinesToErase = (Console.CursorTop - cursorStartTop) + 1;
+                    int numberOfLinesToErase = (Console.CursorTop - cursorStartTop) + 3;
                     ClearLinesOfScreen(cursorStartTop, numberOfLinesToErase);
                     invalidMessage = "Invalid Input: Please try again.\n";
                     valid = false;
@@ -64,7 +64,7 @@ namespace RPSLS
         public static void ClearLinesOfScreen(int lineStart, int numberOfLines)
         {
             string blankLine = new string(' ', Console.WindowWidth);
-            for (int i = lineStart; i < numberOfLines; i++)
+            for (int i = lineStart; i < lineStart + numberOfLines; i++)
             {
                 Console.SetCursorPosition(0, i);
                 Console.WriteLine(blankLine);
