@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,7 +42,7 @@ namespace RPSLS
             string invalidMessage = "";
             do
             {
-                Console.WriteLine(invalidMessage + choiceMessage);
+                DisplayHelper.WriteLiteral((invalidMessage + choiceMessage),cursorStartLeft, cursorStartTop);
                 valid = Int32.TryParse(Console.ReadLine(), out userInput);
                 if (userInput < lowLimit || userInput > upperLimit)
                 {
@@ -86,6 +87,27 @@ namespace RPSLS
                 Console.WriteLine(blankLine);
             }
             Console.SetCursorPosition(endLeft, endTop);
+        }
+
+        public static void WriteLiteral(string msg, int left, int top)
+        {
+            int pos = 0;
+            msg = msg.Replace("\n", "¶");
+
+            Console.SetCursorPosition(left, top);
+            foreach (char letter in msg)
+            {
+                if (letter == '¶')
+                {
+                    top += 1;
+                    Console.SetCursorPosition(left, top);
+                }
+                else
+                {
+                    Console.Write(msg[pos]);
+                }
+                pos++;
+            }
         }
     }
 }
