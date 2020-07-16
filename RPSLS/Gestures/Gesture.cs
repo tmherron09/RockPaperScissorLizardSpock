@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,13 @@ namespace RPSLS
         {
             
         }
-
+        /// <summary>
+        /// Gets the results of a Hand Toss.
+        /// Called off Player 1 or First Seat.
+        /// </summary>
+        /// <param name="gesture">The Player 2/Second seat Gesture</param>
+        /// <param name="players">List of Players to set score after evaluation.</param>
+        /// <returns></returns>
         public string Challenge(Gesture gesture, List<Player> players)
         {
             string msg = $"{name} Ties {gesture.name}";
@@ -35,9 +42,9 @@ namespace RPSLS
             }
             return msg;
         }
-
+        // Second method using set Switch statements.
         public abstract string ChallengeSwitch(Gesture gesture, List<Player> players);
-        
+        // WIP: Third method using Switch and Modulos/Clock arithmetic
         public string ChallengeSwitchModuls(Gesture gesture, List<Player> players)
         {
             string msg = "";
@@ -66,10 +73,6 @@ namespace RPSLS
             return msg;
         }
     
-
-        public override string ToString()
-        {
-            return name;
-        }
+        
     }
 }

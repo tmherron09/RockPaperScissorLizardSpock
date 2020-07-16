@@ -14,7 +14,7 @@ namespace RPSLS
             number = 9;
             verbs = new string[] { "eats", "poisons" };
         }
-
+        // Second method using set Switch statements.
         public override string ChallengeSwitch(Gesture gesture, List<Player> players)
         {
             string msg = "";

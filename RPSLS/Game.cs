@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RPSLS
@@ -14,9 +15,11 @@ namespace RPSLS
         public List<Gesture> gestures;
 
 
+
+
         public Game()
         {
-            
+
 
             gestures = new List<Gesture>()
             {
@@ -29,6 +32,9 @@ namespace RPSLS
             };
 
         }
+        /// <summary>
+        /// Initializes the game and resets values for a play again.
+        /// </summary>
         private void InitializeGame()
         {
             Console.Clear();
@@ -36,6 +42,9 @@ namespace RPSLS
             numberOfRounds = 3; // Placeholder initialization
             players = new List<Player>() { null, new Computer() };
         }
+        /// <summary>
+        /// Main Game Loop
+        /// </summary>
         public void Run()
         {
             do
@@ -46,31 +55,37 @@ namespace RPSLS
                 PlayGame();
             } while (PlayAgain());
         }
-
+        /// <summary>
+        /// Asks the user how many players they would like to play.
+        /// </summary>
         private void ChooseNumberOfPlayers()
         {
             string choice = "Please select the number of players(1 / 2): ";
             int startWriteLocation = (Console.WindowWidth - choice.Length) / 2;
             int selection = DisplayHelper.GetUserInput(1, 2, choice, startWriteLocation, 5);
+            // If 1 player, loops once adding a human player 2 player, loops twice.
             for (int i = 0; i < selection; i++)
             {
-                players[i] = new Human(i + 1);
+                players[i] = new Human(i + 1); // i + 1 = Player "1" or Player "2"
             }
             //Console.ReadLine();
         }
-
-
-
+        /// <summary>
+        /// The main game logic loop. Ends after a set number of rounds and one player
+        /// has a higher score.
+        /// </summary>
         public void PlayGame()
         {
-
-            while (currentRound <= numberOfRounds || players[0].score == players[1].score) // Placeholder until logic
+            while (currentRound <= numberOfRounds + 1 || players[0].score == players[1].score) // Placeholder until logic
             {
                 string result = "";
                 // Display Round Info and Score
                 DisplayRoundInformation();
                 players[0].ChooseGesture(gestures, players[0].playerType, 30, 7);
                 players[1].ChooseGesture(gestures, players[1].playerType, 60, 7);
+
+                //Count Down
+                DisplayCountDown();
 
                 result = players[0].gesture.Challenge(players[1].gesture, players);
                 DisplayRoundInformation(result);
@@ -85,6 +100,10 @@ namespace RPSLS
             DisplayGameWinner();
         }
 
+
+        /// <summary>
+        /// Displays the Winner.
+        /// </summary>
         private void DisplayGameWinner()
         {
             int winnerIndex;
@@ -95,7 +114,9 @@ namespace RPSLS
             DisplayHelper.WriteLiteral(msg, startWriteLocation, 8);
             Console.ReadKey();
         }
-
+        /// <summary>
+        /// Displays the Round info prior to the toss.
+        /// </summary>
         private void DisplayRoundInformation()
         {
             DisplayHelper.ClearLinesOfScreen(0, 20);
@@ -104,6 +125,11 @@ namespace RPSLS
             Console.SetCursorPosition(startWriteLocation, 5);
             Console.Write(msg);
         }
+        /// <summary>
+        /// Display the Round info after a toss.
+        /// Shows the result of the toss.
+        /// </summary>
+        /// <param name="result">Result message recieved from Gesture Challange Method.</param>
         private void DisplayRoundInformation(string result)
         {
             DisplayHelper.ClearLinesOfScreen(0, 20);
@@ -111,6 +137,10 @@ namespace RPSLS
             int startWriteLocation = (Console.WindowWidth - msg.Length) / 2;
             DisplayHelper.WriteLiteral(msg + result, startWriteLocation + 1, 5);
         }
+        /// <summary>
+        /// Asks the player if they would like to play again.
+        /// </summary>
+        /// <returns>True: play again False: exit program</returns>
         public bool PlayAgain()
         {
 
@@ -133,6 +163,30 @@ namespace RPSLS
                     return false;
                 }
             }
+        }
+        /// <summary>
+        /// Decorative method to display a countdown of 3...2...1....
+        /// fake animation.
+        /// </summary>
+        private void DisplayCountDown()
+        {
+            int startWriteLocation = (Console.WindowWidth / 2) - 3;
+            string dots = "";
+            DisplayHelper.ClearLinesOfScreen(0, 20);
+            for (int i = 3; i > 0; i--)
+            {
+                for (int j = 1; j < 5; j++)
+                {
+                    dots = new string('.', i);
+                    Console.SetCursorPosition(startWriteLocation, 7);
+                    Console.WriteLine(i + dots);
+                    Thread.Sleep(200);
+                }
+                DisplayHelper.ClearLinesOfScreen();
+            }
+            Console.SetCursorPosition(startWriteLocation, 7);
+            Console.WriteLine("GO!!!!!!");
+            Thread.Sleep(500);
         }
     }
 }
