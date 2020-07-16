@@ -12,11 +12,35 @@ namespace RPSLS
         {
             name = "Spock";
             number = 7;
+            verbs = new string[] { "vaporizes", "breaks" };
         }
 
-        public override bool Challenge(Gesture paper)
+        public override string ChallengeSwitch(Gesture gesture, List<Player> players)
         {
-            throw new NotImplementedException();
+            string msg = "";
+            switch (gesture.number)
+            {
+                case 7:
+                    msg = $"{name} Ties {gesture.name}";
+                    break;
+                case 8:
+                    msg = $"{gesture.name} {gesture.verbs[0]} {name}!\n\n{players[1].playerType} Wins the Round!";
+                    players[1].score++;
+                    break;
+                case 9:
+                    msg = $"{gesture.name} {gesture.verbs[1]} {name}!\n\n{players[1].playerType} Wins the Round!";
+                    players[1].score++;
+                    break;
+                case 10:
+                    msg = $"{name} {verbs[1]} {gesture.name}!\n\n{players[0].playerType} Wins the Round!";
+                    players[0].score++;
+                    break;
+                case 6:
+                    msg = $"{name} {verbs[0]} {gesture.name}!\n\n{players[0].playerType} Wins the Round!";
+                    players[0].score++;
+                    break;
+            }
+            return msg;
         }
     }
 }

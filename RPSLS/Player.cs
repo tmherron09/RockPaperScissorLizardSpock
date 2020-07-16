@@ -27,11 +27,11 @@ namespace RPSLS
             return playerType;
         }
 
-        public virtual Gesture ChooseGesture(List<dynamic> gestures)
+        public void ChooseGesture(List<Gesture> gestures)
         {
             string gestureChoiceMessage = GetGestureChoiceMessage(gestures);
             int userInput = DisplayHelper.GetUserInput(1, gestures.Count, gestureChoiceMessage, 15, 7);
-            return gestures[userInput - 1];
+            gesture = gestures[userInput - 1];
         }
 
         public virtual void Test()
@@ -39,7 +39,7 @@ namespace RPSLS
             Console.WriteLine($"{ playerType}");
         }
 
-        public string GetGestureChoiceMessage(List<dynamic> gestures)
+        public string GetGestureChoiceMessage(List<Gesture> gestures)
         {
             string choices = "";
             choices += $"Choose your hand:\n";

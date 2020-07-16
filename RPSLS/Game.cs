@@ -32,7 +32,7 @@ namespace RPSLS
         private void InitializeGame()
         {
             currentRound = 1;
-            numberOfRounds = 3; // Placeholder initialization
+            numberOfRounds = 15; // Placeholder initialization
             players = new List<Player>() { null, new Computer() };
         }
         public void Run()
@@ -62,17 +62,14 @@ namespace RPSLS
 
             while (currentRound <= numberOfRounds || players[0].score == players[1].score) // Placeholder until logic
             {
-
+                string result = "";
                 // Display Round Info and Score
-                //DisplayRoundInformation();
-                
+                DisplayRoundInformation(result);
+                players[0].ChooseGesture(gestures);
+                players[1].ChooseGesture(gestures);
 
-
-                //dynamic playerOneChoice = players[0].ChooseGesture(gestures);
-                //dynamic playerTwoChoice = players[1].ChooseGesture(gestures);
-
-                players[0].gesture.Challenge(players[1].gesture);
-                
+                result = players[0].gesture.Challenge(players[1].gesture, players);
+                DisplayRoundInformation(result);
 
                 //playerOneChoice.Challenge(playerTwoChoice, players);
 
@@ -83,6 +80,7 @@ namespace RPSLS
                 currentRound++;
             }
             // Display Winner Info!
+            Console.WriteLine("Winner is had");
         }
 
 
@@ -97,6 +95,15 @@ namespace RPSLS
             int startWriteLocation = (Console.WindowWidth - msg.Length) / 2;
             Console.SetCursorPosition(startWriteLocation, 5);
             Console.Write(msg);
+        }
+        private void DisplayRoundInformation(string result)
+        {
+            DisplayHelper.ClearLinesOfScreen(0, 20);
+            string msg = $"Round {currentRound} : {players[0]} Score: {players[0].score} | {players[1]} Score: {players[1].score}\n\n";
+            int startWriteLocation = (Console.WindowWidth - (msg.Length + result.Length) / 2);
+            Console.SetCursorPosition(startWriteLocation, 5);
+
+            Console.Write(msg + result);
         }
     }
 }
