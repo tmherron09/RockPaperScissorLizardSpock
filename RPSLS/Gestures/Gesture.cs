@@ -15,10 +15,6 @@ namespace RPSLS
 
         }
 
-        public virtual bool CanWin(Gesture gesture)
-        {
-            throw new NotImplementedException();
-        }
 
         public override string ToString()
         {

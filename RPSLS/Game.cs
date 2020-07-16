@@ -52,10 +52,12 @@ namespace RPSLS
                 
                 // Display Round Info and Score
                 DisplayRoundInformation();
-                // Display Choices
+                
                 players[0].ChooseGesture();
-                // Get User Input
+                players[1].ChooseGesture();
+                
                 // Display Both Hands and Declare winner
+
                 // Add to scores.
                 Console.ReadKey();
                 currentRound++;

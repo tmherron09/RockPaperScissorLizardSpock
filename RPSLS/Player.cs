@@ -36,6 +36,7 @@ namespace RPSLS
         {
             string gestureChoiceMessage = GetGestureChoiceMessage();
             int playerInput = DisplayHelper.GetUserInput(1, gestures.Count, gestureChoiceMessage, 10, 7);
+            gestureChoice = gestures[playerInput - 1];
         }
 
         public string GetGestureChoiceMessage()

@@ -42,7 +42,7 @@ namespace RPSLS
             string invalidMessage = "";
             do
             {
-                DisplayHelper.WriteLiteral((invalidMessage + choiceMessage),cursorStartLeft, cursorStartTop);
+                DisplayHelper.WriteLiteral((invalidMessage + choiceMessage), cursorStartLeft, cursorStartTop);
                 valid = Int32.TryParse(Console.ReadLine(), out userInput);
                 if (userInput < lowLimit || userInput > upperLimit)
                 {
@@ -52,6 +52,7 @@ namespace RPSLS
                     valid = false;
                 }
             } while (!valid);
+            ClearLinesOfScreen();
             return userInput;
         }
         /// <summary>
@@ -69,6 +70,13 @@ namespace RPSLS
                 Console.WriteLine(blankLine);
             }
             Console.SetCursorPosition(0, 0);
+        }
+        public static void ClearLinesOfScreen()
+        {
+            string blankLine = new string(' ', Console.WindowWidth);
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Console.WriteLine(blankLine);
+
         }
         /// <summary>
         /// Clears lines in the console and Sets new Cursor start.
