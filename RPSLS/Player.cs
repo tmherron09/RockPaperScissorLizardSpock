@@ -36,7 +36,13 @@ namespace RPSLS
         public void ChooseGesture(List<Gesture> gestures, string playerType)
         {
             string gestureChoiceMessage = GetGestureChoiceMessage(gestures, playerType);
-            int userInput = DisplayHelper.GetUserInput(1, gestures.Count, gestureChoiceMessage, 15, 7);
+            int userInput = DisplayHelper.GetUserInputHidden(1, gestures.Count, gestureChoiceMessage, 15, 7);
+            gesture = gestures[userInput - 1];
+        }
+        public void ChooseGesture(List<Gesture> gestures, string playerType, int startLeft, int startTop)
+        {
+            string gestureChoiceMessage = GetGestureChoiceMessage(gestures, playerType);
+            int userInput = DisplayHelper.GetUserInputHidden(1, gestures.Count, gestureChoiceMessage, startLeft, startTop);
             gesture = gestures[userInput - 1];
         }
 

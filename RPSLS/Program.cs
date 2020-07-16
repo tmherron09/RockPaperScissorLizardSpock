@@ -13,7 +13,9 @@ namespace RPSLS
             Game game = new Game();
             game.Run();
 
-            Console.ReadLine();
+
+            Console.WriteLine("Exiting game... Presss any key...");
+            Console.ReadKey();
         }
     }
 }

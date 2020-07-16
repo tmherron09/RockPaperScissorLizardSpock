@@ -40,21 +40,45 @@ namespace RPSLS
             bool valid = false;
             int userInput = 0;
             string invalidMessage = "";
+            int numberOfLinesToErase = (Console.CursorTop - cursorStartTop) + 10;
             do
             {
                 DisplayHelper.WriteLiteral((invalidMessage + choiceMessage), cursorStartLeft, cursorStartTop);
                 valid = Int32.TryParse(Console.ReadLine(), out userInput);
                 if (userInput < lowLimit || userInput > upperLimit)
                 {
-                    int numberOfLinesToErase = (Console.CursorTop - cursorStartTop) + 3;
+                    
                     ClearLinesOfScreen(cursorStartTop, numberOfLinesToErase);
                     invalidMessage = "Invalid Input: Please try again.\n";
                     valid = false;
                 }
             } while (!valid);
-            ClearLinesOfScreen();
+            ClearLinesOfScreen(cursorStartTop, numberOfLinesToErase);
             return userInput;
         }
+        public static int GetUserInputHidden(int lowLimit, int upperLimit, string choiceMessage, int cursorStartLeft, int cursorStartTop)
+        {
+            bool valid = false;
+            int userInput = 0;
+            string invalidMessage = "";
+            int numberOfLinesToErase = (Console.CursorTop - cursorStartTop) + 10;
+            do
+            {
+                DisplayHelper.WriteLiteral((invalidMessage + choiceMessage), cursorStartLeft, cursorStartTop);
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                string keyString = "" + key.KeyChar;
+                valid = Int32.TryParse(keyString, out userInput);
+                if (userInput < lowLimit || userInput > upperLimit)
+                {
+                    ClearLinesOfScreen(cursorStartTop, numberOfLinesToErase);
+                    invalidMessage = "Invalid Input: Please try again.\n";
+                    valid = false;
+                }
+            } while (!valid);
+            ClearLinesOfScreen(cursorStartTop, numberOfLinesToErase);
+            return userInput;
+        }
+
         /// <summary>
         /// Clears lines in the console.
         /// Fills the lines with a string of ' ' the width of the window.
