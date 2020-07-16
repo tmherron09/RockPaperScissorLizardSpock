@@ -12,5 +12,30 @@ namespace RPSLS
         {
             name = "Rock";
         }
+
+        public override void Challenge(Rock gesture, string[] winMessages)
+        {
+            
+        }
+
+        public override void Challenge(Spock gesture, string[] winMessages)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Challenge(Paper gesture, string[] winMessages)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Challenge(Lizard gesture, string[] winMessages)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Challenge(Scissors gesture, string[] winMessages)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

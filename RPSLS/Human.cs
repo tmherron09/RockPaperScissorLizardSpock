@@ -11,7 +11,8 @@ namespace RPSLS
         public Human(int playerNumber) : base()
         {
             isHuman = true;
-            playerType = "Player " + playerNumber;
+            playerType = $"Player {playerNumber}";
+            winMessage = $"{playerType} Wins!";
         }
     }
 }

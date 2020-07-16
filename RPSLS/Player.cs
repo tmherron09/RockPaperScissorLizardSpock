@@ -11,20 +11,13 @@ namespace RPSLS
         public int score;
         public string playerType;
         public bool isHuman;
-        public List<Gesture> gestures;
-        public Gesture gestureChoice;
+        public string winMessage;
+        
+        
 
         public Player()
         {
             score = 0;
-            gestures = new List<Gesture>()
-            {
-                new Rock(),
-                new Paper(),
-                new Scissors(),
-                new Lizard(),
-                new Spock()
-            };
         }
 
         public override string ToString()
@@ -32,11 +25,10 @@ namespace RPSLS
             return playerType;
         }
 
-        public virtual void ChooseGesture()
+        public virtual int ChooseGesture(List<Gesture> gestures)
         {
             string gestureChoiceMessage = GetGestureChoiceMessage();
-            int playerInput = DisplayHelper.GetUserInput(1, gestures.Count, gestureChoiceMessage, 10, 7);
-            gestureChoice = gestures[playerInput - 1];
+            return DisplayHelper.GetUserInput(1, gestures.Count, gestureChoiceMessage, 15, 7);
         }
 
         public string GetGestureChoiceMessage()

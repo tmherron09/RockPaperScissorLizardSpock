@@ -11,10 +11,22 @@ namespace RPSLS
         private List<Player> players;
         private int numberOfRounds;
         private int currentRound;
+        public List<Gesture> gestures;
+        
 
         public Game()
         {
             InitializeGame();
+            gestures = new List<Gesture>()
+            {
+                new Rock(),
+                new Spock(),
+                new Paper(),
+                new Lizard(),
+                new Scissors()
+
+            };
+            
         }
         private void InitializeGame()
         {
@@ -38,6 +50,7 @@ namespace RPSLS
             for(int i = 0; i < selection; i++)
             {
                 players[i] = new Human(i+1);
+                
             }
             //Console.ReadLine();
         }
@@ -46,15 +59,16 @@ namespace RPSLS
 
         public void PlayGame()
         {
-            string resultsMessage = "Tie: Neither Player Wins";
-            while (currentRound <= numberOfRounds) // Placeholder until logic
+            
+            while (currentRound <= numberOfRounds || players[0].score == players[1].score) // Placeholder until logic
             {
                 
                 // Display Round Info and Score
                 DisplayRoundInformation();
                 
-                players[0].ChooseGesture();
-                players[1].ChooseGesture();
+                int playerOneChoice = players[0].ChooseGesture(gestures);
+                int playerTwoChoice = players[1].ChooseGesture(gestures);
+                gestures[playerOneChoice].Challenge(gestures[playerTwoChoice], players);
                 
                 // Display Both Hands and Declare winner
 

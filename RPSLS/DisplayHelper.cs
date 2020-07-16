@@ -96,7 +96,14 @@ namespace RPSLS
             }
             Console.SetCursorPosition(endLeft, endTop);
         }
+        public static void RoundInfo(string result)
+        {
+            ClearLinesOfScreen(6, 15);
+            int leftStart = (Console.WindowWidth - (result.Length / 2))/2;
+            int topStart = 10;
+            WriteLiteral(result, leftStart, topStart);
 
+        }
         public static void WriteLiteral(string msg, int left, int top)
         {
             int pos = 0;
