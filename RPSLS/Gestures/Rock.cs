@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,31 +12,10 @@ namespace RPSLS
         public Rock()
         {
             name = "Rock";
+            number = 6;
+            verbs = new string[] { "smashes", "crushes" };
         }
 
-        public override void Challenge(Rock gesture, string[] winMessages)
-        {
-            
-        }
-
-        public override void Challenge(Spock gesture, string[] winMessages)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Challenge(Paper gesture, string[] winMessages)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Challenge(Lizard gesture, string[] winMessages)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Challenge(Scissors gesture, string[] winMessages)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

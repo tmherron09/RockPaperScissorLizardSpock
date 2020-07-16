@@ -12,12 +12,14 @@ namespace RPSLS
         public string playerType;
         public bool isHuman;
         public string winMessage;
+        public Gesture gesture;
         
         
 
         public Player()
         {
             score = 0;
+
         }
 
         public override string ToString()
@@ -25,13 +27,19 @@ namespace RPSLS
             return playerType;
         }
 
-        public virtual int ChooseGesture(List<Gesture> gestures)
+        public virtual Gesture ChooseGesture(List<dynamic> gestures)
         {
-            string gestureChoiceMessage = GetGestureChoiceMessage();
-            return DisplayHelper.GetUserInput(1, gestures.Count, gestureChoiceMessage, 15, 7);
+            string gestureChoiceMessage = GetGestureChoiceMessage(gestures);
+            int userInput = DisplayHelper.GetUserInput(1, gestures.Count, gestureChoiceMessage, 15, 7);
+            return gestures[userInput - 1];
         }
 
-        public string GetGestureChoiceMessage()
+        public virtual void Test()
+        {
+            Console.WriteLine($"{ playerType}");
+        }
+
+        public string GetGestureChoiceMessage(List<dynamic> gestures)
         {
             string choices = "";
             choices += $"Choose your hand:\n";

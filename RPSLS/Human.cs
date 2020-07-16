@@ -14,5 +14,10 @@ namespace RPSLS
             playerType = $"Player {playerNumber}";
             winMessage = $"{playerType} Wins!";
         }
+
+        public override void Test()
+        {
+            Console.WriteLine($"{ playerType} is Human");
+        }
     }
 }

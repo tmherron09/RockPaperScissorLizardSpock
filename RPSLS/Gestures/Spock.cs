@@ -11,6 +11,12 @@ namespace RPSLS
         public Spock()
         {
             name = "Spock";
+            number = 7;
+        }
+
+        public override bool Challenge(Gesture paper)
+        {
+            throw new NotImplementedException();
         }
     }
 }

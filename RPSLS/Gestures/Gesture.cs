@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,21 +10,29 @@ namespace RPSLS
     abstract class Gesture
     {
         public string name;  // May not need if I overload ToString.
+        public int number;
+        string[] verbs;
         public Gesture()
         {
             
         }
 
-        public void Challenge(Gesture gesture, string[] winMessages)
+        public string Challenge(Gesture gesture)
         {
-            throw new NotImplementedException;
+            string msg = $"{name} Ties {gesture.name}";
+            for (int i = 1; i < 3; i++)
+            {
+                if (((number - i) % 5) == gesture.number % 5)
+                {
+                    msg = $"{name} {verbs[i-1]} {gesture.name}!";
+                }
+                if (((number + i) % 5) == gesture.number % 5)
+                {
+                    msg = $"{gesture.name} {verbs[2 - i]} {name}!";
+                }
+            }
+            return msg;
         }
-        public abstract void Challenge(Rock gesture, string[] winMessages);
-        public abstract void Challenge(Spock gesture, string[] winMessages);
-        public abstract void Challenge(Paper gesture, string[] winMessages);
-        public abstract void Challenge(Lizard gesture, string[] winMessages);
-        public abstract void Challenge(Scissors gesture, string[] winMessages);
-        
         
 
 

@@ -12,11 +12,12 @@ namespace RPSLS
         private int numberOfRounds;
         private int currentRound;
         public List<Gesture> gestures;
-        
+
 
         public Game()
         {
             InitializeGame();
+
             gestures = new List<Gesture>()
             {
                 new Rock(),
@@ -26,7 +27,7 @@ namespace RPSLS
                 new Scissors()
 
             };
-            
+
         }
         private void InitializeGame()
         {
@@ -47,10 +48,9 @@ namespace RPSLS
         {
             //Console.Write("Please select the number of players (1/2): ");
             int selection = DisplayHelper.GetUserInput(1, 2, "Please select the number of players(1 / 2): ");
-            for(int i = 0; i < selection; i++)
+            for (int i = 0; i < selection; i++)
             {
-                players[i] = new Human(i+1);
-                
+                players[i] = new Human(i + 1);
             }
             //Console.ReadLine();
         }
@@ -59,17 +59,23 @@ namespace RPSLS
 
         public void PlayGame()
         {
-            
+
             while (currentRound <= numberOfRounds || players[0].score == players[1].score) // Placeholder until logic
             {
-                
+
                 // Display Round Info and Score
-                DisplayRoundInformation();
+                //DisplayRoundInformation();
                 
-                int playerOneChoice = players[0].ChooseGesture(gestures);
-                int playerTwoChoice = players[1].ChooseGesture(gestures);
-                gestures[playerOneChoice].Challenge(gestures[playerTwoChoice], players);
+
+
+                //dynamic playerOneChoice = players[0].ChooseGesture(gestures);
+                //dynamic playerTwoChoice = players[1].ChooseGesture(gestures);
+
+                players[0].gesture.Challenge(players[1].gesture);
                 
+
+                //playerOneChoice.Challenge(playerTwoChoice, players);
+
                 // Display Both Hands and Declare winner
 
                 // Add to scores.
@@ -79,10 +85,10 @@ namespace RPSLS
             // Display Winner Info!
         }
 
-        
 
-        
-        
+
+
+
 
         private void DisplayRoundInformation()
         {

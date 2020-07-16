@@ -11,6 +11,12 @@ namespace RPSLS
         public Lizard()
         {
             name = "Lizard";
+            number = 9;
+        }
+
+        public override bool Challenge(Gesture paper)
+        {
+            throw new NotImplementedException();
         }
     }
 }

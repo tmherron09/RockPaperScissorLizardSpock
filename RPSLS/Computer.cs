@@ -13,5 +13,10 @@ namespace RPSLS
             isHuman = false;
             playerType = "COM";
         }
+
+        public override void Test()
+        {
+            Console.WriteLine($"{ playerType} is Computer");
+        }
     }
 }
